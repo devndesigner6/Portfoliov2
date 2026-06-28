@@ -220,6 +220,33 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Sleek modern transparent scrollbar on desktop */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.25);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.45);
+  }
+
+  /* Hide scrollbars completely on touch devices to prevent loading lines */
+  @media (pointer: coarse) {
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    html {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  }
 }
 
 /* Custom View Transition circular wipe animations */

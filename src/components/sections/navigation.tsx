@@ -659,7 +659,7 @@ function NavigationBar() {
       </AnimatePresence>
 
       {/* Dock Bar Container */}
-      <div className="flex items-center justify-between w-full md:w-auto rounded-full border border-neutral-200/10 dark:border-neutral-800/10 bg-[#161617] md:bg-black/60 px-3 py-1.5 md:px-2 md:py-1.5 md:backdrop-blur-xl shadow-2xl relative z-50">
+      <div className="flex items-center justify-between w-full md:w-auto rounded-full border border-zinc-800/50 dark:border-neutral-800/60 bg-[#121212] md:bg-black/60 px-3 py-1.5 md:px-2 md:py-1.5 md:backdrop-blur-xl shadow-2xl relative z-50">
         <Tabs value={activeTab} onValueChange={handleNavigation} className="w-full md:w-auto">
           <TabsHighlight
             className="absolute z-0 inset-0 rounded-full bg-white/10"
@@ -676,14 +676,14 @@ function NavigationBar() {
                     <TabsTrigger value={link.path} asChild>
                       <Link
                         href={link.path}
-                        className="group flex flex-col md:flex-row items-center justify-center rounded-full px-2.5 py-1 md:px-4 md:py-2 text-white/50 transition-all duration-200 data-[state=active]:text-white dark:text-white/40 dark:data-[state=active]:text-white gap-0.5 md:gap-0"
+                        className="group flex flex-col md:flex-row items-center justify-center rounded-full px-2.5 py-1 md:px-4 md:py-2 text-neutral-500 data-[state=active]:text-white dark:text-neutral-500 dark:data-[state=active]:text-white md:text-white/50 md:dark:text-white/40 gap-0.5 md:gap-0"
                       >
                         {Icon && (
                           <Icon className="h-4.5 w-4.5 md:h-4 md:w-4 shrink-0" strokeWidth={1.5} />
                         )}
                         
                         {/* Mobile view label: stacked below icon */}
-                        <span className="text-[8px] font-medium font-space-mono text-white/60 dark:text-white/40 group-data-[state=active]:text-white block md:hidden leading-none mt-0.5">
+                        <span className="text-[8px] font-medium font-space-mono text-neutral-500 group-data-[state=active]:text-white block md:hidden leading-none mt-0.5">
                           {translatedName}
                         </span>
 
