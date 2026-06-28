@@ -41,7 +41,7 @@ const Footer = () => {
     if (isAsset) return;
 
     const hasVisited = sessionStorage.getItem("has-visited-session");
-    const url = hasVisited ? "/api/visitors?hit=false" : "/api/visitors?hit=true";
+    const url = hasVisited ? "/api/stats?hit=false" : "/api/stats?hit=true";
 
     fetch(url)
       .then((res) => res.json())

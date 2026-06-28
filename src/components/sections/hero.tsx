@@ -460,15 +460,15 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
           {currentTranslation.welcome} <WaveEmoji />
         </p>
 
-        {/* 3D Starry Grid cover banner - Responsive (mobile + desktop) */}
-        <div className="relative [perspective:1000px] w-full select-none group">
+        {/* 3D Starry Grid cover banner - Desktop only */}
+        <div className="hidden md:block relative [perspective:1000px] w-full select-none group">
           <motion.div
             onMouseMove={handleBannerMouseMove}
             onMouseLeave={handleBannerMouseLeave}
             animate={{ rotateX: rotate.x, rotateY: rotate.y }}
             transition={{ type: "spring", stiffness: 120, damping: 22 }}
             style={{ transformStyle: "preserve-3d" }}
-            className="relative h-24 w-full overflow-hidden rounded-2xl border border-neutral-200/20 dark:border-neutral-800/80 bg-white md:h-40 cursor-pointer shadow-md"
+            className="relative h-28 w-full overflow-hidden rounded-2xl border border-neutral-200/20 dark:border-neutral-800/80 bg-white md:h-40 cursor-pointer shadow-md"
           >
             {/* Tech grid scanning lines overlay */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none z-10" />
@@ -493,7 +493,7 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
           </motion.div>
         </div>
 
-        {/* Profile Avatar overlapping cover slightly on both desktop & mobile */}
+        {/* Profile Avatar overlapping cover slightly on desktop, standard layout on mobile */}
         <div className="px-4 md:px-6 relative z-20 flex justify-start">
           {/* Circular/Sleek cropped square profile avatar with direct border and no extra padding */}
           <div
@@ -502,7 +502,7 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
               playClickSound();
               setIsFlipped(!isFlipped);
             }}
-            className="group/pfp cursor-pointer h-20 w-20 md:h-28 md:w-28 shrink-0 -mt-10 md:-mt-14 ml-4 md:ml-6 rounded-2xl overflow-hidden border-2 border-background dark:border-zinc-950 bg-neutral-100 dark:bg-neutral-950 shadow-md relative z-30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg"
+            className="group/pfp cursor-pointer h-24 w-24 md:h-28 md:w-28 shrink-0 mt-2 md:-mt-14 rounded-2xl overflow-hidden border border-neutral-300/35 dark:border-neutral-800/80 bg-neutral-100 dark:bg-neutral-950 shadow-md relative z-30 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg"
           >
             {/* Active Rendered Profile Image with Glitch displacement */}
             <motion.div

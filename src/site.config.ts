@@ -53,7 +53,7 @@ export const siteConfig = {
   assets: {
     ogImage: "/default-image.webp",
     blogOgImage: "/default-image-blogs.webp",
-    favicon: "/favicon.ico",
+    favicon: "/favicon.png",
     banner: "/banner.jpg",
   },
 
