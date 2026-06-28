@@ -8,9 +8,13 @@ const slug = siteConfig.identity.name
 
 const BASE = `https://api.counterapi.dev/v1/${slug}-portfolio`;
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const res = await fetch(`${BASE}/visits/up`, { next: { revalidate: 0 } });
+    const { searchParams } = new URL(request.url);
+    const shouldHit = searchParams.get("hit") !== "false";
+    const url = shouldHit ? `${BASE}/visits/up` : BASE;
+
+    const res = await fetch(url, { next: { revalidate: 0 } });
     if (!res.ok) throw new Error("counterapi error");
     const data = await res.json();
     return NextResponse.json({ count: data.count ? data.count + 64 : 65 });

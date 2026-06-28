@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import LocationIcon from "@/components/icons/location";
 import BoltIcon from "@/components/icons/bolt";
 import CloudSunIcon from "@/components/icons/cloud-sun";
@@ -14,6 +15,7 @@ const Footer = () => {
   const [location, setLocation] = useState<string | null>(null);
   const [weather, setWeather] = useState<string | null>(null);
   const [visitorCount, setVisitorCount] = useState<number | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const tick = () => setTime(new Date());
@@ -34,15 +36,23 @@ const Footer = () => {
   }, []);
 
   useEffect(() => {
-    fetch("/api/visitors")
+    // Prevent double counting asset requests (favicon, webp images, maps, etc.)
+    const isAsset = /\.[a-zA-Z0-9]+$/.test(pathname || "");
+    if (isAsset) return;
+
+    const hasVisited = sessionStorage.getItem("has-visited-session");
+    const url = hasVisited ? "/api/visitors?hit=false" : "/api/visitors?hit=true";
+
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         if (data && typeof data.count === "number") {
           setVisitorCount(data.count);
+          sessionStorage.setItem("has-visited-session", "true");
         }
       })
       .catch(() => {});
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     fetch("/api/location")
