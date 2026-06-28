@@ -465,7 +465,7 @@ function NavigationBar() {
   };
 
   return (
-    <nav ref={navContainerRef} className="fixed bottom-0 left-0 right-0 w-full z-50 md:bottom-6 md:left-1/2 md:-translate-x-1/2 md:w-auto">
+    <nav ref={navContainerRef} className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 w-[92%] max-w-[420px] md:w-auto md:bottom-6">
 
       {/* Settings Popover - Fully Adapting to Active Theme */}
       <AnimatePresence>
@@ -658,7 +658,7 @@ function NavigationBar() {
       </AnimatePresence>
 
       {/* Dock Bar Container */}
-      <div className="flex items-center justify-between w-full md:w-auto rounded-none md:rounded-full border-t md:border border-neutral-200/10 dark:border-neutral-800/10 bg-black/80 md:bg-black/60 px-4 md:px-2 py-2.5 md:py-1.5 backdrop-blur-xl shadow-2xl relative z-50">
+      <div className="flex items-center justify-between w-full md:w-auto rounded-full border border-neutral-200/10 dark:border-neutral-800/10 bg-[#161617] md:bg-black/60 px-3 py-1.5 md:px-2 md:py-1.5 md:backdrop-blur-xl shadow-2xl relative z-50">
         <Tabs value={activeTab} onValueChange={handleNavigation} className="w-full md:w-auto">
           <TabsHighlight
             className="absolute z-0 inset-0 rounded-full bg-white/10"
@@ -674,11 +674,18 @@ function NavigationBar() {
                     <TabsTrigger value={link.path} asChild>
                       <Link
                         href={link.path}
-                        className="flex items-center rounded-full px-3 py-1 text-white/50 transition-all duration-200 data-[state=active]:text-white dark:text-white/40 dark:data-[state=active]:text-white md:px-4 md:py-2"
+                        className="group flex flex-col md:flex-row items-center justify-center rounded-full px-2.5 py-1 md:px-4 md:py-2 text-white/50 transition-all duration-200 data-[state=active]:text-white dark:text-white/40 dark:data-[state=active]:text-white gap-0.5 md:gap-0"
                       >
                         {Icon && (
-                          <Icon className="h-4 w-4 shrink-0" strokeWidth={1.5} />
+                          <Icon className="h-4.5 w-4.5 md:h-4 md:w-4 shrink-0" strokeWidth={1.5} />
                         )}
+                        
+                        {/* Mobile view label: stacked below icon */}
+                        <span className="text-[8px] font-medium font-space-mono text-white/60 dark:text-white/40 group-data-[state=active]:text-white block md:hidden leading-none mt-0.5">
+                          {link.name}
+                        </span>
+
+                        {/* Desktop view label: active indicator animation */}
                         <AnimatePresence initial={false}>
                           {isActive && (
                             <motion.span
@@ -707,7 +714,7 @@ function NavigationBar() {
             vibrateSelection();
             setShowSettings(!showSettings);
           }}
-          className={`flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 ml-1 md:ml-1.5 ${showSettings ? "bg-white/10 text-white" : "text-white/50 hover:text-white hover:bg-white/5"}`}
+          className={`flex h-8 w-8 items-center justify-center rounded-full transition-all duration-200 ml-1 md:ml-1.5 ${showSettings ? "bg-white/10 text-white" : "text-white/50 hover:text-white hover:bg-white/5"}`}
         >
           <Settings
             className={`h-4 w-4 transition-transform duration-300 ${showSettings ? "rotate-45" : "rotate-0"}`}

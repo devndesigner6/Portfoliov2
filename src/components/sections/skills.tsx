@@ -88,7 +88,7 @@ export default function SkillsSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.015, duration: 0.25 }}
               whileHover={{ scale: 1.04, y: -2 }}
-              className="flex items-center gap-2 rounded-lg border border-neutral-300/30 dark:border-neutral-800/80 bg-neutral-50/50 dark:bg-neutral-900/40 px-3 py-1.5 text-xs text-neutral-800 dark:text-neutral-200 shadow-sm transition-all hover:border-neutral-400 dark:hover:border-neutral-700 hover:bg-white dark:hover:bg-neutral-800/80 md:px-3.5 md:py-2 md:text-xs"
+              className="flex items-center gap-2 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-3 py-1.5 text-xs text-neutral-800 dark:text-neutral-200 shadow-sm transition-all hover:border-neutral-400 dark:hover:border-neutral-700 hover:bg-white dark:hover:bg-neutral-800 md:px-3.5 md:py-2 md:text-xs"
             >
               <Icon className="h-3.5 w-3.5 shrink-0" style={{ color }} />
               <span className="font-medium">{name}</span>

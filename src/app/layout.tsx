@@ -143,7 +143,7 @@ export default function RootLayout({ children }) {
             <ViewsProvider>
               <div className="grid min-h-dvh grid-cols-[minmax(0,1fr)] grid-rows-[1fr_auto] overflow-x-hidden">
                 <main
-                  className={`${GeistPixelSquare.className} max-w-[1800px] px-6 pt-14 md:mx-auto md:px-0 md:pt-24`}
+                  className={`${GeistPixelSquare.className} max-w-[1800px] px-6 pt-20 md:mx-auto md:px-0 md:pt-24`}
                 >
                   <OnekoCat />
                   {children}

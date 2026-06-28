@@ -39,7 +39,7 @@ export default function OnekoCat() {
   // Cat follows the cursor, so it's pointless (and overlaps UI) on phones/touch.
   // Disable on small screens or coarse pointers; re-evaluate on viewport change.
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 768px), (pointer: coarse)");
+    const mq = window.matchMedia("(max-width: 1024px), (pointer: coarse)");
     const update = () => setEnabled(!mq.matches);
     update();
     mq.addEventListener("change", update);
