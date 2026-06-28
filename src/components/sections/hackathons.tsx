@@ -8,6 +8,9 @@ import GithubIcon from "../icons/github";
 import { SiDevpost } from "react-icons/si";
 import { TechBadge } from "@/lib/tech-icons";
 
+import { useLanguage } from "@/hooks/useLanguage";
+import { contentTranslations } from "@/lib/translations";
+
 const linkMeta = (url: string): { label: string; icon: React.ReactNode } => {
   try {
     const host = new URL(url).hostname.replace(/^www\./, "");
@@ -37,6 +40,14 @@ const accentLine = {
 
 const HackathonEntry = ({ title, event, year, placement, college, body, techstacks, link, index }) => {
   const [hovered, setHovered] = useState(false);
+  const lang = useLanguage();
+
+  const displayTitle = contentTranslations[lang]?.[title] || title;
+  const displayEvent = contentTranslations[lang]?.[event] || event;
+  const displayPlacement = contentTranslations[lang]?.[placement] || placement;
+  const displayCollege = college ? (contentTranslations[lang]?.[college] || college) : college;
+  const displayBody = contentTranslations[lang]?.[`${title}_body`] || body;
+
   const color = accentColor[placement] ?? "text-foreground";
   const line = accentLine[placement] ?? "bg-foreground/20";
 
@@ -51,7 +62,7 @@ const HackathonEntry = ({ title, event, year, placement, college, body, techstac
       {/* Placement (pixel font) + link — link sits in the empty space on the right */}
       <div className="flex items-center justify-between gap-4">
         <p className={`font-doto text-xl cursor-cell font-bold uppercase leading-none md:text-3xl transition-colors duration-300 ${hovered ? color : "text-foreground"}`}>
-          {placement}
+          {displayPlacement}
         </p>
 
         {link && (
@@ -79,23 +90,23 @@ const HackathonEntry = ({ title, event, year, placement, college, body, techstac
 
       {/* Event metadata */}
       <p className="mt-3 text-[10px] font-medium uppercase tracking-[0.15em] text-muted-foreground md:text-xs">
-        {event} · {year}{college ? ` · ${college}` : ""}
+        {displayEvent} · {year}{displayCollege ? ` · ${displayCollege}` : ""}
       </p>
 
       {/* Title */}
-      <h2 className="mt-1.5 text-sm font-semibold md:text-base">{title}</h2>
+      <h2 className="mt-1.5 text-sm font-semibold md:text-base">{displayTitle}</h2>
 
       {/* Description */}
       <p className="mt-2 font-space-mono text-xs leading-relaxed text-muted-foreground md:text-sm">
-        {Array.isArray(body)
-          ? body.map((seg, i) =>
+        {Array.isArray(displayBody)
+          ? displayBody.map((seg, i) =>
               seg.bold ? (
                 <strong key={i} className="font-semibold text-foreground">{seg.text}</strong>
               ) : (
                 <span key={i}>{seg.text}</span>
               )
             )
-          : body}
+          : displayBody}
       </p>
 
       {/* Tech — colored badges */}

@@ -3,6 +3,8 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { TechBadge } from "@/lib/tech-icons";
+import { useLanguage } from "@/hooks/useLanguage";
+import { contentTranslations } from "@/lib/translations";
 
 interface TimelineProps {
   role: string;
@@ -19,6 +21,13 @@ interface TimelineProps {
 }
 
 const Timeline = ({ role, company, year, type, location, logo, logoPadding, invertLogo, responsibility, techstacks, index = 0 }: TimelineProps) => {
+  const lang = useLanguage();
+  const displayCompany = contentTranslations[lang]?.[company] || company;
+  const displayType = type ? (contentTranslations[lang]?.[type] || type) : type;
+  const displayRole = contentTranslations[lang]?.[role] || role;
+  const displayLocation = location ? (contentTranslations[lang]?.[location] || location) : location;
+  const displayResponsibility = contentTranslations[lang]?.[`${role}_responsibilities`] || responsibility;
+
   return (
     <motion.ol
       className="relative border-s border-black/15 dark:border-white/15"
@@ -39,35 +48,35 @@ const Timeline = ({ role, company, year, type, location, logo, logoPadding, inve
               {logo ? (
                 <Image
                   src={logo}
-                  alt={`${company} logo`}
+                  alt={`${displayCompany} logo`}
                   width={40}
                   height={40}
                   className={`h-full w-full object-cover ${logoPadding ? "p-1.5" : ""} ${invertLogo ? "dark:invert" : ""}`}
                 />
               ) : (
                 <span className="text-[10px] font-bold text-muted-foreground">
-                  {company?.slice(0, 2).toUpperCase()}
+                  {displayCompany?.slice(0, 2).toUpperCase()}
                 </span>
               )}
             </div>
 
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="truncate text-xs font-semibold md:text-sm">{company}</span>
-                {type && (
+                <span className="truncate text-xs font-semibold md:text-sm">{displayCompany}</span>
+                {displayType && (
                   <span className="shrink-0 rounded-full  px-1.5 py-px text-[8px] bg-black/8 font-medium text-muted-foreground dark:bg-white/8 md:text-[9px]">
-                    {type}
+                    {displayType}
                   </span>
                 )}
               </div>
-              <p className="truncate text-[10px] text-muted-foreground md:text-xs  mt-1">{role}</p>
+              <p className="truncate text-[10px] text-muted-foreground md:text-xs  mt-1">{displayRole}</p>
             </div>
           </div>
 
           <div className="shrink-0 text-right">
             <p className="text-[10px] font-medium text-muted-foreground md:text-xs">{year}</p>
-            {location && (
-              <p className="text-[10px] text-muted-foreground/60 md:text-xs">{location}</p>
+            {displayLocation && (
+              <p className="text-[10px] text-muted-foreground/60 md:text-xs">{displayLocation}</p>
             )}
           </div>
         </div>
@@ -75,7 +84,7 @@ const Timeline = ({ role, company, year, type, location, logo, logoPadding, inve
         <div className="mb-3 space-y-1 md:mb-4">
           <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground md:mb-2 md:text-sm">Key Responsibilities</p>
           <ul className="list-disc space-y-1.5 pl-4 marker:text-muted-foreground/40 md:space-y-2">
-            {responsibility.map((bullet, i) => (
+            {displayResponsibility.map((bullet, i) => (
               <li key={i} className="font-space-mono text-xs leading-relaxed wrap-break-word text-muted-foreground md:text-sm">
                 {Array.isArray(bullet)
                   ? bullet.map((seg, j) =>

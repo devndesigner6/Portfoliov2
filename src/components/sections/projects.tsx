@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { useLanguage } from "@/hooks/useLanguage";
+import { contentTranslations } from "@/lib/translations";
 
 import { TechBadge } from "@/lib/tech-icons";
 import { motion, AnimatePresence } from "motion/react";
@@ -56,6 +58,11 @@ const Projects = ({
   index = 0,
 }: ProjectsProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const lang = useLanguage();
+  const trans = contentTranslations[lang]?.[title || ""];
+  const displayCategory = trans?.category || category;
+  const displayDescription = trans?.description || description;
+
   const Illustration = illustration ? projectIllustrations[illustration] : null;
   const href = stars !== null && stars !== undefined && github
     ? `https://github.com/${github}`
@@ -147,7 +154,7 @@ const Projects = ({
 
       <div className="flex flex-1 flex-col p-3 md:p-4">
         <div className="mb-2 flex items-center justify-between">
-          <p className="text-[10px] font-medium text-muted-foreground md:text-[11px]">{category}</p>
+          <p className="text-[10px] font-medium text-muted-foreground md:text-[11px]">{displayCategory}</p>
           <div className="flex items-center gap-2">
             {status && (
               <span className={`px-1.5 py-0.5 text-[9px] font-mono font-semibold rounded-sm border uppercase ${status === "building" ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30 animate-pulse" : "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30"}`}>
@@ -165,7 +172,7 @@ const Projects = ({
 
         <h1 className="mb-1.5 text-sm font-semibold md:text-base">{title}</h1>
         <p className="mb-3 font-space-mono text-[11px] leading-snug text-muted-foreground md:text-xs">
-          {description}
+          {displayDescription}
         </p>
 
         <div className="mt-auto flex flex-wrap gap-1.5">

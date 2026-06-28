@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { navLinks } from "@/constants";
 import { motion, AnimatePresence } from "framer-motion";
+import { navTranslations } from "@/lib/translations";
 import MoonIcon from "@/components/icons/moon";
 import SunIcon from "@/components/icons/sun";
 import HouseIcon from "@/components/icons/house";
@@ -668,6 +669,7 @@ function NavigationBar() {
               {navLinks.map((link) => {
                 const Icon = iconMap[link.path];
                 const isActive = activeTab === link.path;
+                const translatedName = navTranslations[language]?.[link.name] || link.name;
 
                 return (
                   <TabsHighlightItem key={link.path} value={link.path}>
@@ -682,7 +684,7 @@ function NavigationBar() {
                         
                         {/* Mobile view label: stacked below icon */}
                         <span className="text-[8px] font-medium font-space-mono text-white/60 dark:text-white/40 group-data-[state=active]:text-white block md:hidden leading-none mt-0.5">
-                          {link.name}
+                          {translatedName}
                         </span>
 
                         {/* Desktop view label: active indicator animation */}
@@ -695,7 +697,7 @@ function NavigationBar() {
                               transition={{ duration: 0.25, ease: "easeInOut" }}
                               className="hidden md:inline-block overflow-hidden whitespace-nowrap text-[10px] font-semibold font-space-mono text-white"
                             >
-                              {link.name}
+                              {translatedName}
                             </motion.span>
                           )}
                         </AnimatePresence>

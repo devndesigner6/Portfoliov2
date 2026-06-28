@@ -454,7 +454,7 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
   }, []);
 
   return (
-    <div className="mx-auto flex flex-col gap-6 md:gap-10 md:max-w-4xl">
+    <div className="mx-auto flex flex-col gap-6 md:gap-10 md:max-w-4xl px-2 md:px-0">
       <motion.div className="flex flex-col gap-5" {...fadeUp(0)}>
         <p className="font-doto text-xs text-muted-foreground md:text-sm">
           {currentTranslation.welcome} <WaveEmoji />
@@ -493,8 +493,8 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
           </motion.div>
         </div>
 
-        {/* Profile Avatar overlapping cover slightly on desktop, standard layout on mobile */}
-        <div className="px-4 md:px-6 relative z-20 flex justify-start">
+        {/* Profile Avatar layout alignment */}
+        <div className="relative z-20 flex justify-start md:px-6">
           {/* Circular/Sleek cropped square profile avatar with direct border and no extra padding */}
           <div
             onClick={() => {
@@ -563,8 +563,8 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
           </div>
         </div>
 
-        {/* Name and titles block positioned completely below banner to prevent mix */}
-        <div className="px-4 md:px-6 min-w-0 flex flex-col mt-1 select-none">
+        {/* Name and titles block layout alignment */}
+        <div className="min-w-0 flex flex-col mt-1 select-none md:px-6">
           <div className="flex items-center gap-3 flex-wrap">
             <h1
               onClick={() => {

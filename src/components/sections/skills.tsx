@@ -70,14 +70,25 @@ const SKILLS = [
   { name: "Linux", Icon: SiLinux, color: "#FCC624" },
 ];
 
+import { useLanguage } from "@/hooks/useLanguage";
+
+const skillsTranslations: Record<string, string> = {
+  english: "Skills & Technologies",
+  hindi: "कौशल और प्रौद्योगिकियां",
+  telugu: "నైపుణ్యాలు & సాంకేతికతలు",
+};
+
 export default function SkillsSection() {
+  const lang = useLanguage();
+  const titleText = skillsTranslations[lang] || "Skills & Technologies";
+
   return (
-    <div className="mx-auto mt-12 w-full max-w-4xl font-space-mono">
-      <h5 className="mb-4 font-doto text-2xl font-medium md:text-3xl">
-        Skills & Technologies
+    <div className="mx-auto mt-8 md:mt-12 w-full max-w-4xl font-space-mono">
+      <h5 className="mb-4 font-doto text-lg font-medium text-center md:text-left md:text-3xl">
+        {titleText}
       </h5>
 
-      <div className="flex flex-wrap justify-center gap-x-2.5 gap-y-3">
+      <div className="flex flex-wrap justify-center gap-x-1.5 gap-y-2 md:gap-x-2.5 md:gap-y-3">
         {SKILLS.map((skill, index) => {
           const { name, Icon, color } = skill;
           return (
@@ -86,11 +97,11 @@ export default function SkillsSection() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.015, duration: 0.25 }}
+              transition={{ delay: index * 0.012, duration: 0.25 }}
               whileHover={{ scale: 1.04, y: -2 }}
-              className="flex items-center gap-2 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-3 py-1.5 text-xs text-neutral-800 dark:text-neutral-200 shadow-sm transition-all hover:border-neutral-400 dark:hover:border-neutral-700 hover:bg-white dark:hover:bg-neutral-800 md:px-3.5 md:py-2 md:text-xs"
+              className="flex items-center gap-1.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-2 py-1 text-[10px] text-neutral-800 dark:text-neutral-200 shadow-sm transition-all hover:border-neutral-400 dark:hover:border-neutral-700 hover:bg-white dark:hover:bg-neutral-800 md:px-3.5 md:py-2 md:text-xs"
             >
-              <Icon className="h-3.5 w-3.5 shrink-0" style={{ color }} />
+              <Icon className="h-3 w-3 md:h-3.5 md:w-3.5 shrink-0" style={{ color }} />
               <span className="font-medium">{name}</span>
             </motion.div>
           );
