@@ -454,7 +454,7 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
   }, []);
 
   return (
-    <div className="mx-auto flex flex-col gap-6 md:gap-10 md:max-w-4xl px-2 md:px-0">
+    <div className="mx-auto flex flex-col gap-6 md:gap-10 md:max-w-4xl px-4 md:px-0">
       <motion.div className="flex flex-col gap-5" {...fadeUp(0)}>
         <p className="font-doto text-xs text-muted-foreground md:text-sm">
           {currentTranslation.welcome} <WaveEmoji />
@@ -572,7 +572,7 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
                 playClickSound();
                 setShowFullName(!showFullName);
               }}
-              className="text-2xl font-bold tracking-tight md:text-4xl text-foreground font-cera flex items-center gap-2 cursor-pointer select-none hover:text-foreground/90 transition-colors"
+              className={`${GeistPixelSquare.className} text-2xl font-bold tracking-tight md:text-4xl text-foreground uppercase flex items-center gap-2 cursor-pointer select-none hover:text-foreground/90 transition-colors`}
             >
               <motion.span layout="position">Hemanth</motion.span>
               <AnimatePresence mode="popLayout">
@@ -597,7 +597,7 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
           <div className="flex flex-row items-center gap-2 mt-1.5 font-space-mono text-xs md:text-sm text-muted-foreground">
             <span>{currentTranslation.ageText}</span>
             <span className="text-foreground/20 select-none">|</span>
-            <div className="h-5 w-40 relative overflow-hidden flex items-center">
+            <div className="h-5 w-48 relative overflow-hidden flex items-center">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={titleIndex}
@@ -605,7 +605,7 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -12, opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute font-semibold text-foreground/90 font-space-mono"
+                  className="absolute font-semibold text-foreground/90 font-space-mono uppercase tracking-wider text-[10px] md:text-xs"
                 >
                   {titles[titleIndex]}
                 </motion.span>

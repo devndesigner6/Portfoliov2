@@ -59,7 +59,7 @@ const Layout = ({ children, showHeader, title, subtitle }: LayoutProps) => {
   return (
     <div className="mt-0 mb-6 md:my-6">
       {showHeader && (
-        <header className="md:max-w-4xl md:mx-auto px-2 md:px-0 space-y-2 mt-0 mb-4 md:my-6 font-doto">
+        <header className="md:max-w-4xl md:mx-auto px-4 md:px-0 space-y-2 mt-0 mb-4 md:my-6 font-doto">
           <h1 className="text-2xl uppercase">{displayTitle}</h1>
           <p>{displaySubtitle}</p>
         </header>
