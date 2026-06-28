@@ -12,7 +12,7 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const shouldHit = searchParams.get("hit") !== "false";
-    const url = shouldHit ? `${BASE}/visits/up` : BASE;
+    const url = shouldHit ? `${BASE}/visits/up` : `${BASE}/visits/`;
 
     const res = await fetch(url, { next: { revalidate: 0 } });
     if (!res.ok) throw new Error("counterapi error");

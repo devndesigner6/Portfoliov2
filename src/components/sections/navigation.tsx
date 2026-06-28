@@ -465,7 +465,7 @@ function NavigationBar() {
   };
 
   return (
-    <nav ref={navContainerRef} className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2">
+    <nav ref={navContainerRef} className="fixed bottom-0 left-0 right-0 w-full z-50 md:bottom-6 md:left-1/2 md:-translate-x-1/2 md:w-auto">
 
       {/* Settings Popover - Fully Adapting to Active Theme */}
       <AnimatePresence>
@@ -475,7 +475,7 @@ function NavigationBar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 15, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="absolute bottom-16 right-0 w-[275px] rounded-2xl border border-neutral-200/20 dark:border-neutral-800/10 bg-white/95 dark:bg-black/90 p-4 shadow-2xl backdrop-blur-xl z-55 flex flex-col gap-4 overflow-hidden font-space-mono text-xs select-none text-neutral-800 dark:text-neutral-200"
+            className="absolute bottom-16 right-4 md:right-0 w-[275px] rounded-2xl border border-neutral-200/20 dark:border-neutral-800/10 bg-white/95 dark:bg-black/90 p-4 shadow-2xl backdrop-blur-xl z-55 flex flex-col gap-4 overflow-hidden font-space-mono text-xs select-none text-neutral-800 dark:text-neutral-200"
           >
             {/* Ambient Refraction Glow Backing */}
             <div className="absolute inset-0 -z-10 overflow-hidden rounded-2xl opacity-40 dark:opacity-30 pointer-events-none">
@@ -658,13 +658,13 @@ function NavigationBar() {
       </AnimatePresence>
 
       {/* Dock Bar Container */}
-      <div className="flex items-center rounded-full border border-neutral-200/10 bg-black/60 px-2 py-1.5 backdrop-blur-xl shadow-2xl relative z-50">
-        <Tabs value={activeTab} onValueChange={handleNavigation}>
+      <div className="flex items-center justify-between w-full md:w-auto rounded-none md:rounded-full border-t md:border border-neutral-200/10 dark:border-neutral-800/10 bg-black/80 md:bg-black/60 px-4 md:px-2 py-2.5 md:py-1.5 backdrop-blur-xl shadow-2xl relative z-50">
+        <Tabs value={activeTab} onValueChange={handleNavigation} className="w-full md:w-auto">
           <TabsHighlight
             className="absolute z-0 inset-0 rounded-full bg-white/10"
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
-            <TabsList className="flex items-center gap-0.5">
+            <TabsList className="flex items-center justify-around w-full md:w-auto gap-0.5">
               {navLinks.map((link) => {
                 const Icon = iconMap[link.path];
                 const isActive = activeTab === link.path;
@@ -674,7 +674,7 @@ function NavigationBar() {
                     <TabsTrigger value={link.path} asChild>
                       <Link
                         href={link.path}
-                        className="flex items-center rounded-full px-3.5 py-1.5 text-white/50 transition-all duration-200 data-[state=active]:text-white dark:text-white/40 dark:data-[state=active]:text-white md:px-4 md:py-2"
+                        className="flex items-center rounded-full px-3 py-1 text-white/50 transition-all duration-200 data-[state=active]:text-white dark:text-white/40 dark:data-[state=active]:text-white md:px-4 md:py-2"
                       >
                         {Icon && (
                           <Icon className="h-4 w-4 shrink-0" strokeWidth={1.5} />
@@ -686,7 +686,7 @@ function NavigationBar() {
                               animate={{ width: "auto", opacity: 1, marginLeft: 6 }}
                               exit={{ width: 0, opacity: 0, marginLeft: 0 }}
                               transition={{ duration: 0.25, ease: "easeInOut" }}
-                              className="overflow-hidden whitespace-nowrap text-[10px] font-semibold font-space-mono text-white"
+                              className="hidden md:inline-block overflow-hidden whitespace-nowrap text-[10px] font-semibold font-space-mono text-white"
                             >
                               {link.name}
                             </motion.span>
@@ -707,7 +707,7 @@ function NavigationBar() {
             vibrateSelection();
             setShowSettings(!showSettings);
           }}
-          className={`flex h-8 w-8 items-center justify-center rounded-full transition-all duration-200 ml-1.5 ${showSettings ? "bg-white/10 text-white" : "text-white/50 hover:text-white hover:bg-white/5"}`}
+          className={`flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 ml-1 md:ml-1.5 ${showSettings ? "bg-white/10 text-white" : "text-white/50 hover:text-white hover:bg-white/5"}`}
         >
           <Settings
             className={`h-4 w-4 transition-transform duration-300 ${showSettings ? "rotate-45" : "rotate-0"}`}
