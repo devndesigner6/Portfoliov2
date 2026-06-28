@@ -125,9 +125,17 @@ export async function fetchGitHubContributions(username = "devndesigner6") {
 export async function fetchGitHubStars(repoFullName) {
   if (!repoFullName) return null;
   try {
+    const headers: HeadersInit = {};
+    if (process.env.GITHUB_TOKEN) {
+      headers["Authorization"] = `Bearer ${process.env.GITHUB_TOKEN}`;
+    }
+
     const res = await fetch(
       `${GITHUB_REST_ENDPOINT}/repos/${repoFullName}`,
-      { next: { revalidate: 3600 } }
+      {
+        headers,
+        next: { revalidate: 3600 },
+      }
     );
     if (!res.ok) return null;
     const data = await res.json();

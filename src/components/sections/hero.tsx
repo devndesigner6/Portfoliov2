@@ -454,7 +454,7 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
   }, []);
 
   return (
-    <div className="mx-auto flex flex-col gap-6 md:gap-10 md:max-w-4xl px-4 md:px-0">
+    <div className="mx-auto flex flex-col gap-6 md:gap-10 md:max-w-4xl">
       <motion.div className="flex flex-col gap-5" {...fadeUp(0)}>
         <p className="font-doto text-xs text-muted-foreground md:text-sm">
           {currentTranslation.welcome} <WaveEmoji />

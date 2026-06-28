@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import ProjectCard from "@/components/sections/projects";
 import Layout from "@/components/layout/layout";
 import { projects } from "@/constants";

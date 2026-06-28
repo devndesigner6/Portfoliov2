@@ -64,9 +64,7 @@ const Projects = ({
   const displayDescription = trans?.description || description;
 
   const Illustration = illustration ? projectIllustrations[illustration] : null;
-  const href = stars !== null && stars !== undefined && github
-    ? `https://github.com/${github}`
-    : link;
+  const href = link || (github ? `https://github.com/${github}` : "");
 
   return (
     <motion.a

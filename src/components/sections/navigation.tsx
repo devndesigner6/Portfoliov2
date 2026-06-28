@@ -229,7 +229,7 @@ function NavigationBar() {
   // Sync audio source when changing playlists (languages)
   useEffect(() => {
     if (audioRef.current) {
-      const wasPlaying = isPlaying;
+      const wasPlaying = !audioRef.current.paused;
       audioRef.current.pause();
       
       const currentList = language === "hindi" ? hindiSongs : language === "telugu" ? teluguSongs : englishSongs;

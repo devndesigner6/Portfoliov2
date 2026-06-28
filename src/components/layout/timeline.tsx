@@ -27,6 +27,7 @@ const Timeline = ({ role, company, year, type, location, logo, logoPadding, inve
   const displayRole = contentTranslations[lang]?.[role] || role;
   const displayLocation = location ? (contentTranslations[lang]?.[location] || location) : location;
   const displayResponsibility = contentTranslations[lang]?.[`${role}_responsibilities`] || responsibility;
+  const keyResponsibilitiesText = contentTranslations[lang]?.["Key Responsibilities"] || "Key Responsibilities";
 
   return (
     <motion.ol
@@ -82,7 +83,7 @@ const Timeline = ({ role, company, year, type, location, logo, logoPadding, inve
         </div>
 
         <div className="mb-3 space-y-1 md:mb-4">
-          <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground md:mb-2 md:text-sm">Key Responsibilities</p>
+          <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground md:mb-2 md:text-sm">{keyResponsibilitiesText}</p>
           <ul className="list-disc space-y-1.5 pl-4 marker:text-muted-foreground/40 md:space-y-2">
             {displayResponsibility.map((bullet, i) => (
               <li key={i} className="font-space-mono text-xs leading-relaxed wrap-break-word text-muted-foreground md:text-sm">

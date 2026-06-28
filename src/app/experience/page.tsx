@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import Layout from "@/components/layout/layout";
 import Timeline from "@/components/layout/timeline";
 import { experiences } from "@/constants";

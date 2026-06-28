@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { NextResponse } from "next/server";
 
 const countryNames = new Intl.DisplayNames(["en"], { type: "region" });

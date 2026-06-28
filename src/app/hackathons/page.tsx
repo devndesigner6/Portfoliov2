@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import HackathonList from "@/components/sections/hackathons";
 import Layout from "@/components/layout/layout";
 import { hackathons } from "@/constants";

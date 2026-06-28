@@ -9,10 +9,12 @@ const MONTH_NAMES = [
 
 function convertDateFormat(dateStr) {
   try {
+    if (!dateStr) return "";
+    const str = String(dateStr);
     let date;
 
-    if (dateStr.includes("-") && dateStr.split("-").length === 3) {
-      const parts = dateStr.split("-");
+    if (str.includes("-") && str.split("-").length === 3) {
+      const parts = str.split("-");
       if (parts[0].length <= 2) {
         const [dd, mm, yyyy] = parts.map(Number);
         if (!isNaN(dd) && !isNaN(mm) && !isNaN(yyyy)) {
@@ -21,10 +23,10 @@ function convertDateFormat(dateStr) {
           throw new Error("Invalid date parts");
         }
       } else {
-        date = new Date(dateStr);
+        date = new Date(str);
       }
     } else {
-      date = new Date(dateStr);
+      date = new Date(str);
     }
 
     if (isNaN(date.getTime())) {
