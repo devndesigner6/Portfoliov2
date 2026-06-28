@@ -13,7 +13,7 @@ export async function GET() {
     const res = await fetch(`${BASE}/visits/up`, { next: { revalidate: 0 } });
     if (!res.ok) throw new Error("counterapi error");
     const data = await res.json();
-    return NextResponse.json({ count: data.count ?? null });
+    return NextResponse.json({ count: data.count ? data.count + 64 : 65 });
   } catch {
     return NextResponse.json({ count: null });
   }

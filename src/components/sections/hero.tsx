@@ -564,18 +564,10 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
         </div>
 
         {/* Name and titles block positioned completely below banner to prevent mix */}
-        <div
-          onClick={() => {
-            vibrateSelection();
-            playClickSound();
-            setTitleIndex((prev) => (prev + 1) % titles.length);
-          }}
-          className="px-4 md:px-6 min-w-0 flex flex-col mt-1 cursor-pointer select-none"
-        >
+        <div className="px-4 md:px-6 min-w-0 flex flex-col mt-1 select-none">
           <div className="flex items-center gap-3 flex-wrap">
             <h1
-              onClick={(e) => {
-                e.stopPropagation();
+              onClick={() => {
                 vibrateSelection();
                 playClickSound();
                 setShowFullName(!showFullName);
@@ -598,24 +590,7 @@ const Hero = ({ contributionData = [], lifetimeTotal = 0 }: HeroProps) => {
               </AnimatePresence>
               <motion.span layout="position">Peddada</motion.span>
             </h1>
-            
-            {/* Sleek tactile sliding identity toggle switch */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                vibrateSelection();
-                playClickSound();
-                setIsFlipped(!isFlipped);
-              }}
-              className="relative h-5 w-8 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-900/60 flex items-center p-0.5 transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600 shrink-0"
-              title="Toggle identity profile"
-            >
-              <motion.div
-                animate={{ x: isFlipped ? 12 : 0 }}
-                transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                className="h-3.5 w-3.5 rounded-full bg-neutral-800 dark:bg-neutral-200 shadow-xs"
-              />
-            </button>
+
           </div>
           
           {/* Inline Age and Rotator Slider */}
